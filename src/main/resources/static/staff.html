@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal - ZeroMonos</title>
+    <link rel="stylesheet" href="css/staff.css" />
+</head>
+<body>
+    <div class="header">
+        <div class="logo-header">
+            <span>♻️</span>
+            <span>ZeroMonos - Staff Portal</span>
+        </div>
+        <div class="role-dropdown">
+            <div class="role-icon" onclick="toggleRoleMenu()">
+                👨‍💼
+            </div>
+            <div class="role-menu" id="roleMenu">
+                <div class="role-option" onclick="window.location='user.html'">
+                    <span>👤</span>
+                    <span>Citizen</span>
+                </div>
+                <div class="role-option current">
+                    <span>👨‍💼</span>
+                    <span>Staff</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('bookings')">📋 Bookings</button>
+            <button class="tab" onclick="showTab('employees')">👥 Employees</button>
+            <button class="tab" onclick="showTab('tasks')">📝 Work Tasks</button>
+        </div>
+
+        <div id="bookings" class="tab-content active">
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h2>📊 Manage Bookings</h2>
+                    <button class="load-btn" id="loadBtn">
+                        <span>🔄</span>
+                        <span>Load Bookings</span>
+                    </button>
+                </div>
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label>🏛️ Municipality</label>
+                        <select id="municipality">
+                            <option value="">All Municipalities</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>📋 Status</label>
+                        <select id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="RECEIVED">RECEIVED</option>
+                            <option value="ASSIGNED">ASSIGNED</option>
+                            <option value="IN_PROGRESS">IN_PROGRESS</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                            <option value="CANCELLED">CANCELLED</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="table-container">
+                <div id="staffResult"></div>
+            </div>
+            <div id="staffMsg"></div>
+        </div>
+
+        <div id="employees" class="tab-content">
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h2>👥 Manage Employees</h2>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="load-btn" id="addEmployeeBtn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <span>➕</span>
+                            <span>Add Employee</span>
+                        </button>
+                        <button class="load-btn" id="loadEmployeesBtn">
+                            <span>🔄</span>
+                            <span>Load Employees</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="addEmployeeForm" style="display: none; background: #f7fafc; padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                <h3 style="color: #2d3748; margin-top: 0;">Add New Employee</h3>
+                <form id="employeeForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: #4a5568; font-weight: 600;">Name:</label>
+                            <input type="text" id="empName" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: #4a5568; font-weight: 600;">Email:</label>
+                            <input type="email" id="empEmail" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: #4a5568; font-weight: 600;">Municipality:</label>
+                            <select id="empMunicipality" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;"></select>
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; color: #4a5568; font-weight: 600;">Role:</label>
+                            <select id="empRole" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px;">
+                                <option value="COLLECTOR">Collector</option>
+                                <option value="DRIVER">Driver</option>
+                                <option value="SUPERVISOR">Supervisor</option>
+                                <option value="ADMIN">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="submit" class="update-btn" style="flex: 1;">✅ Create Employee</button>
+                        <button type="button" class="update-btn" onclick="document.getElementById('addEmployeeForm').style.display='none'" style="flex: 1; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">❌ Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="table-container">
+                <div id="employeesResult"></div>
+            </div>
+        </div>
+
+        <div id="tasks" class="tab-content">
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h2>📝 Work Tasks</h2>
+                    <button class="load-btn" id="loadTasksBtn">
+                        <span>🔄</span>
+                        <span>Load Tasks</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <div id="tasksResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Employee Modal -->
+    <div id="assignModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>👥 Select Employee</h2>
+                <button class="close-btn" onclick="closeAssignModal()">&times;</button>
+            </div>
+            <div class="employee-list" id="employeeList"></div>
+        </div>
+    </div>
+
+    <!-- Complete Task Modal -->
+    <div id="completeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>✅ Complete Task</h2>
+                <button class="close-btn" onclick="closeCompleteModal()">&times;</button>
+            </div>
+            <form id="completeTaskForm">
+                <input type="hidden" id="taskIdToComplete">
+                <div class="form-group">
+                    <label>Completion Notes (optional):</label>
+                    <textarea id="completionNotes" placeholder="Add any notes about the task completion..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="update-btn">✅ Complete Task</button>
+                    <button type="button" class="update-btn" onclick="closeCompleteModal()" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/staff.js"></script>
+</body>
+</html>

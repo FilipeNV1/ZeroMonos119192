@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Portal - ZeroMonos</title>
+  <link rel="stylesheet" href="css/user.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="logo-header">
+      <span>♻️</span>
+      <span>ZeroMonos - Citizen Portal</span>
+    </div>
+    <div class="role-dropdown">
+      <div class="role-icon" onclick="toggleRoleMenu()">
+        👤
+      </div>
+      <div class="role-menu" id="roleMenu">
+        <div class="role-option current">
+          <span>👤</span>
+          <span>Citizen</span>
+        </div>
+        <div class="role-option" onclick="window.location='staff.html'">
+          <span>👨‍💼</span>
+          <span>Staff</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('booking')">📝 New Booking</button>
+      <button class="tab" onclick="showTab('mybookings')">📋 My Bookings</button>
+    </div>
+
+    <div id="booking" class="tab-content active">
+      <h2 style="text-align:center;color:#2d3748;margin-top:0;">Schedule Waste Collection</h2>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label>Description:</label>
+          <input id="description" placeholder="e.g., Large furniture disposal" required>
+        </div>
+        <div class="form-group">
+          <label>Municipality:</label>
+          <select id="municipality" required></select>
+        </div>
+        <div class="form-group">
+          <label>Date & Time:</label>
+          <input type="datetime-local" id="date" required>
+        </div>
+        <button type="submit">🗑️ Submit Booking</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <div id="mybookings" class="tab-content">
+      <h2 style="text-align:center;color:#2d3748;margin-top:0;">Track Your Booking</h2>
+      <form id="searchForm">
+        <div class="form-group">
+          <label>Enter Your Booking Token:</label>
+          <input id="token" placeholder="Your booking token" required>
+        </div>
+        <button type="submit">🔍 Search Booking</button>
+      </form>
+      <div id="bookingResult"></div>
+      <div id="historyResult"></div>
+    </div>
+  </div>
+
+  <script src="js/user.js"></script>
+</body>
+</html>

@@ -25,7 +25,7 @@ public class EmployeeController {
     @PostMapping
     public ResponseEntity<EmployeeRequest> createEmployee(@RequestBody EmployeeRequest employee) {
         EmployeeRequest saved = employeeRepository.save(employee);
-        logger.info("Employee created: {}", saved.getName());
+        logger.info("Employee created");
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
@@ -37,7 +37,7 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeRequest> getEmployee(@PathVariable Long id) {
-        logger.info("Received request to get employee {}", id);
+        logger.info("Received request to get employee");
         return employeeRepository.findById(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
@@ -45,7 +45,7 @@ public class EmployeeController {
 
     @GetMapping("/municipality/{municipality}")
     public ResponseEntity<List<EmployeeRequest>> getEmployeesByMunicipality(@PathVariable String municipality) {
-        logger.info("Received request to get employees for municipality {}", municipality);
+        logger.info("Received request to get employees for municipality");
         return ResponseEntity.ok(employeeRepository.findByMunicipality(municipality));
     }
 }

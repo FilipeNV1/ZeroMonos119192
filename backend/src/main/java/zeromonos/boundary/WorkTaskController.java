@@ -42,7 +42,7 @@ public class WorkTaskController {
         Optional<EmployeeRequest> employeeOpt = employeeRepository.findById(employeeId);
 
         if (bookingOpt.isEmpty() || employeeOpt.isEmpty()) {
-            logger.warn("Booking or employee not found: token={}, employeeId={}", token, employeeId);
+            logger.warn("Booking or employee not found");
             return ResponseEntity.notFound().build();
         }
 
@@ -52,7 +52,7 @@ public class WorkTaskController {
         // Check if booking already has a task
         List<WorkTaskRequest> existingTasks = workTaskRepository.findByBooking(booking);
         if (!existingTasks.isEmpty()) {
-            logger.warn("Booking {} already has a task assigned", token);
+            logger.warn("Booking already has a task assigned");
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
 
@@ -62,7 +62,7 @@ public class WorkTaskController {
         booking.setStatus("ASSIGNED");
         bookingService.save(booking);
 
-        logger.info("Task assigned: booking={}, employee={}", token, employee.getName());
+        logger.info("Task assigned");
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
@@ -74,7 +74,7 @@ public class WorkTaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<WorkTaskRequest> getTask(@PathVariable Long id) {
-        logger.info("Received request to get task {}", id);
+        logger.info("Received request to get task");
         Optional<WorkTaskRequest> task = workTaskRepository.findById(id);
         return task.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -105,7 +105,7 @@ public class WorkTaskController {
         if (employee.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        logger.info("Received request to get tasks for employee {}", employeeId);
+        logger.info("Received request to get tasks for employee");
         return ResponseEntity.ok(workTaskRepository.findByAssignedEmployee(employee.get()));
     }
 }

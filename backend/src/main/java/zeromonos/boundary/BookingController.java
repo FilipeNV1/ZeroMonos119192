@@ -38,13 +38,13 @@ public class BookingController {
         if (description == null || municipality == null || date == null) {
             return ResponseEntity.badRequest().build();
         }
-        logger.info("Received booking request for municipality {}", municipality);
+        logger.info("Received booking request for municipality");
         try {
             BookingRequest booking = bookingService.createBooking(description, municipality, date);
-            logger.info("Booking created with token {}", booking.getToken());
+            logger.info("Booking created");
             return ResponseEntity.status(HttpStatus.CREATED).body(booking);
         } catch (IllegalStateException e) {
-            logger.warn("Booking limit reached for municipality {} on date {}", municipality, date);
+            logger.warn("Booking limit reached for municipality");
             return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         }
     }

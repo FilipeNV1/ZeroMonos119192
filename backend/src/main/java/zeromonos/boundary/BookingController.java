@@ -94,7 +94,6 @@ public class BookingController {
         if (newStatus == null) {
             return ResponseEntity.badRequest().build();
         }
-        String oldStatus = booking.getStatus();
         booking.setStatus(newStatus);
         bookingService.save(booking);
         logger.info("Received request to update booking");

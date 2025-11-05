@@ -12,24 +12,22 @@ import io.github.bonigarcia.seljup.Options;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
 import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {
+    "sel.jup.chrome.options=--headless,--no-sandbox,--disable-dev-shm-usage,--disable-gpu"
+})
 @ExtendWith(SeleniumJupiter.class)
 class WebFunctionalTest {
 
-    @Options
-    ChromeOptions chromeOptions() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        return options;
-    }
+    @LocalServerPort
+    private int port;
 
     @Test
     void testCreateBookingAsCitizen(ChromeDriver driver) {

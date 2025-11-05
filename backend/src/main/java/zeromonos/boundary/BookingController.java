@@ -60,7 +60,7 @@ public class BookingController {
     // GET /api/bookings - Get booking with a specific token
     @GetMapping("/{token}")
     public ResponseEntity<BookingRequest> getBooking(@PathVariable String token) {
-        logger.info("Received request to see booking with token {}", token);
+        logger.info("Received request to see booking with token");
         Optional<BookingRequest> booking = bookingService.getBookingByToken(token);
         return booking.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
@@ -76,7 +76,7 @@ public class BookingController {
         if ("CANCELLED".equals(booking.getStatus())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(booking);
         }
-        logger.info("Received request to cancel booking with token {}", token);
+        logger.info("Received request to cancel booking with token");
         booking.setStatus("CANCELLED");
         bookingService.save(booking);
         return ResponseEntity.ok(booking);
@@ -97,7 +97,7 @@ public class BookingController {
         String oldStatus = booking.getStatus();
         booking.setStatus(newStatus);
         bookingService.save(booking);
-        logger.info("Received request to update booking with token {} from {} to {}", token, oldStatus, newStatus);
+        logger.info("Received request to update booking");
         return ResponseEntity.ok(booking);
     }
 
@@ -108,7 +108,7 @@ public class BookingController {
         if (booking.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        logger.info("Received request to check the history of booking with token {}", token);
+        logger.info("Received request to check the history of booking with token");
         List<BookingHistoryRequest> history = bookingService.getStatusHistory(booking.get());
         return ResponseEntity.ok(history);
     }

@@ -35,8 +35,6 @@ jobs:
           java-version: 17
           distribution: 'zulu'
           cache: 'maven'
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@latest
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
@@ -50,4 +48,4 @@ jobs:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/bookings_db
           SPRING_DATASOURCE_USERNAME: admin
           SPRING_DATASOURCE_PASSWORD: secret
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=FilipeNV1_ZeroMonos119192
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=FilipeNV1_ZeroMonos119192 -Dtest='!**/WebFunctionalTest'

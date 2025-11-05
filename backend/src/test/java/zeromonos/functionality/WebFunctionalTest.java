@@ -1,58 +1,27 @@
 package zeromonos.functionality;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.seljup.SeleniumJupiter;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ExtendWith(SeleniumJupiter.class)
 class WebFunctionalTest {
 
-    @LocalServerPort
-    private int port;
-
-    private WebDriver driver;
-
-    @BeforeEach
-    void setUp() {
-        WebDriverManager.chromedriver().setup();
-        
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-gpu");
-        
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-    }
-
-    @AfterEach
-    void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
     @Test
-    void testCreateBookingAsCitizen() {
-        driver.get("http://localhost:" + port + "/index.html");
+    void testCreateBookingAsCitizen(ChromeDriver driver) {
+        driver.get("http://localhost:8080/index.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         
@@ -84,8 +53,8 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testSearchBooking() {
-        driver.get("http://localhost:" + port + "/user.html");
+    void testSearchBooking(ChromeDriver driver) {
+        driver.get("http://localhost:8080/user.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -105,8 +74,8 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testStaffPortalAccess() {
-        driver.get("http://localhost:" + port + "/index.html");
+    void testStaffPortalAccess(ChromeDriver driver) {
+        driver.get("http://localhost:8080/index.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -127,8 +96,8 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testRoleSwitching() {
-        driver.get("http://localhost:" + port + "/user.html");
+    void testRoleSwitching(ChromeDriver driver) {
+        driver.get("http://localhost:8080/user.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -144,8 +113,8 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testMunicipalityFilter() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testMunicipalityFilter(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -164,8 +133,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testEmployeeManagement() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testEmployeeManagement(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -201,8 +170,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testLoadEmployees() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testLoadEmployees(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -223,8 +192,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testTasksTab() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testTasksTab(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -245,8 +214,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testAssignEmployeeModalOpens() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testAssignEmployeeModalOpens(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -284,8 +253,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testCompleteTaskModalOpens() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testCompleteTaskModalOpens(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -318,8 +287,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testBookingStatusUpdate() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testBookingStatusUpdate(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         
@@ -363,8 +332,8 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testTabNavigation() {
-        driver.get("http://localhost:" + port + "/staff.html");
+    void testTabNavigation(ChromeDriver driver) {
+        driver.get("http://localhost:8080/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         

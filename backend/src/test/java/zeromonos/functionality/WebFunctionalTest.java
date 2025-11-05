@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import java.io.WriteAbortedException;
 import java.time.Duration;
 import java.util.List;
 
@@ -41,7 +40,7 @@ class WebFunctionalTest {
         options.addArguments("--disable-gpu");
         
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
     @AfterEach

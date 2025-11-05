@@ -52,7 +52,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testCreateBookingAsCitizen(ChromeDriver driver) {
+    void testCreateBookingAsCitizen() {
         driver.get("http://localhost:" + port + "/index.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -85,7 +85,7 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testSearchBooking(ChromeDriver driver) {
+    void testSearchBooking() {
         driver.get("http://localhost:" + port + "/user.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -106,7 +106,7 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testStaffPortalAccess(ChromeDriver driver) {
+    void testStaffPortalAccess() {
         driver.get("http://localhost:" + port + "/index.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -128,7 +128,7 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testRoleSwitching(ChromeDriver driver) {
+    void testRoleSwitching() {
         driver.get("http://localhost:" + port + "/user.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -145,7 +145,7 @@ class WebFunctionalTest {
     }
     
     @Test
-    void testMunicipalityFilter(ChromeDriver driver) {
+    void testMunicipalityFilter() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -165,7 +165,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testEmployeeManagement(ChromeDriver driver) {
+    void testEmployeeManagement() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -202,7 +202,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testLoadEmployees(ChromeDriver driver) {
+    void testLoadEmployees() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -224,7 +224,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testTasksTab(ChromeDriver driver) {
+    void testTasksTab() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -246,7 +246,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testAssignEmployeeModalOpens(ChromeDriver driver) {
+    void testAssignEmployeeModalOpens() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -285,7 +285,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testCompleteTaskModalOpens(ChromeDriver driver) {
+    void testCompleteTaskModalOpens() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -319,7 +319,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testBookingStatusUpdate(ChromeDriver driver) {
+    void testBookingStatusUpdate() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -364,7 +364,7 @@ class WebFunctionalTest {
     }
 
     @Test
-    void testTabNavigation(ChromeDriver driver) {
+    void testTabNavigation() {
         driver.get("http://localhost:" + port + "/staff.html");
         
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

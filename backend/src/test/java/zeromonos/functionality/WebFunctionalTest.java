@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.seljup.SeleniumJupiter;
+import io.github.bonigarcia.seljup.Options;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -18,6 +20,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SeleniumJupiter.class)
 class WebFunctionalTest {
+
+    @Options
+    ChromeOptions chromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        return options;
+    }
 
     @Test
     void testCreateBookingAsCitizen(ChromeDriver driver) {
